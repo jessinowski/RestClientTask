@@ -3,6 +3,8 @@ package com.github.restclienttask;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/rickmorty")
 @RequiredArgsConstructor
@@ -11,8 +13,8 @@ public class RickAndMortyController {
     private final RickAndMortyService rickAndMortyService;
 
     @GetMapping("/characters")
-    public ApiResponse getAllRickAndMortyChars() {
-        return rickAndMortyService.getAllRickAndMortyChars();
+    public List<Character> getAllRickAndMortyChars() {
+        return rickAndMortyService.getAllRickAndMortyChars().results();
     }
 
     @GetMapping("/characters/{id}")
@@ -25,8 +27,8 @@ public class RickAndMortyController {
         return rickAndMortyService.getRickAndMortyCharsByStatus(status);
     }
 
-    @GetMapping("/species-statistic")
-    public int getNumberOfCharactersBySpecies(@RequestParam String species){
-        return rickAndMortyService.getNumberOfCharactersBySpecies(species);
-    }
+//    @GetMapping("/species-statistic")
+//    public int getNumberOfCharactersBySpecies(@RequestParam String species){
+//        return rickAndMortyService.getNumberOfCharactersBySpecies(species);
+//    }
 }
